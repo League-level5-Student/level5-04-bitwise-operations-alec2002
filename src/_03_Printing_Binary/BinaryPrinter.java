@@ -11,7 +11,13 @@ public class BinaryPrinter {
 		BinaryPrinter bp = new BinaryPrinter();
 		
 		bp.printByteBinary((byte) 55);
+		System.out.println("");
 		bp.printShortBinary((short) 55);
+		System.out.println("");
+		bp.printIntBinary((int) 30000);
+		System.out.println("");
+		bp.printLongBinary((long)551616518546515151l);
+		System.out.println("");
 		//101011
 	}
 	
@@ -39,27 +45,35 @@ public class BinaryPrinter {
 		byte eight = (byte) (b & 128);
 		eight = (byte) (eight >> 7);
 		
+		
 		System.out.print(eight + "" + seven + "" + sixth + "" + fifth + "" + fourth + "" + third + "" + second + "" + lastBit);
 	}
 	
 	public void printShortBinary(short s) {
-		System.out.println(" ");
-		byte nine = (byte) (s & 256);
-		nine = (byte) (nine >>8);
+		byte b1 = (byte)(s >> 8);
+		byte b2 = (byte)(s&255);
 		
-		byte ten = (byte) (s & 512);
-		nine = (byte) (nine >>9);
+		printByteBinary(b1);
+		printByteBinary(b2);
 		
-		System.out.print(ten + "" + nine);
-		printByteBinary((byte) s);
+	
 		
 	}
 	
 	public void printIntBinary(int i) {
+		short b3 = (short)(i >> 16);
+		short b4 = (short)(i&65535);
+		
+		printShortBinary(b3);
+		printShortBinary(b4);
 		
 	}
 	
 	public void printLongBinary(long l) {
+		int b4 = (int)(l >> 32);
+		int b5 = (int)(l&2147483647);
 		
+		printIntBinary(b4);
+		printIntBinary(b5);
 	}
 }
