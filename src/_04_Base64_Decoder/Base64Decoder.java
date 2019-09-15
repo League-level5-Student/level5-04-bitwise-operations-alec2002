@@ -53,10 +53,33 @@ public class Base64Decoder {
 		byte[] bytes = new byte[4];
 		byte[] bytesConv = new byte[3];
 		
+		
 		bytes[0] = convertBase64Char(s.charAt(0));
 		bytes[1] = convertBase64Char(s.charAt(1));
 		bytes[2] = convertBase64Char(s.charAt(2));
 		bytes[3] = convertBase64Char(s.charAt(3));
+		
+		 byte first = (byte) (bytes[0] << 2);
+		 byte second = (byte) (bytes[1] >> 4);
+		 byte third = (byte) (bytes[2] << 4);
+		 byte fourth = (byte) (bytes[3] //shift it);
+		
+		 
+		 
+	    int comb = first | second;
+	    int comb2 = second | third;
+	    int comb3 = third | fourth;
+		 
+		bytesConv[0] = (byte) comb;
+		bytesConv[1] = (byte) comb2;
+		bytesConv[2] = (byte) comb3;
+		
+		
+		
+		
+		//shift left 4
+		
+		
 		
 		
 		
