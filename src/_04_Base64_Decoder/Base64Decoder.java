@@ -59,39 +59,32 @@ public class Base64Decoder {
 		bytes[2] = convertBase64Char(s.charAt(2));
 		bytes[3] = convertBase64Char(s.charAt(3));
 		
-		 byte first = (byte) (bytes[0] << 2);
-		 byte second = (byte) (bytes[1] >> 4);
-		 byte third = (byte) (bytes[2] << 4);
-		 byte fourth = (byte) (bytes[3] //shift it);
-		
 		 
+	    
+	   
 		 
-	    int comb = first | second;
-	    int comb2 = second | third;
-	    int comb3 = third | fourth;
-		 
-		bytesConv[0] = (byte) comb;
-		bytesConv[1] = (byte) comb2;
-		bytesConv[2] = (byte) comb3;
+		bytesConv[0] = (byte) ((bytes[0] << 2) | (bytes[1] >> 4));
+		bytesConv[1] = (byte) ((bytes[1] << 4) | (bytes[2] >> 2));
+		bytesConv[2] = (byte) ((bytes[2] << 6) | (bytes[3]));
 		
-		
-		
-		
-		//shift left 4
+		return bytesConv;
 		
 		
 		
 		
 		
-		//convert to binary and add to bytesConv
 		
 		
-		return null;
+		
+		
+		
+		
+	
 	}
 
 	// 3. Complete this method so that it takes in a string of any length
 	// and returns the full byte array of the decoded base64 characters.
 	public static byte[] base64StringToByteArray(String file) {
-		return null;
+		
 	}
 }
