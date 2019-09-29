@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Base64Decoder {
+	
 	/*
 	 * Base 64 is a way of encoding binary data using text. Each number 0-63 is
 	 * mapped to a character. NOTE: THIS IS NOT THE SAME AS ASCII OR UNICODE
@@ -33,6 +34,7 @@ public class Base64Decoder {
 	// 1. Complete this method so that it returns the the element in
 	// the base64Chars array that corresponds to the passed in char.
 	public static byte convertBase64Char(char c) {
+		
 		for (int i = 0; i < base64Chars.length; i++) {
 
 			if (c == base64Chars[i]) {
@@ -85,6 +87,21 @@ public class Base64Decoder {
 	// 3. Complete this method so that it takes in a string of any length
 	// and returns the full byte array of the decoded base64 characters.
 	public static byte[] base64StringToByteArray(String file) {
+		//split into 4 using method and then load it in big byte array
+		byte[] bytes = new byte[file.length()];
+		String temp = "";
+		for (int i = 0; i < file.length(); i+=4) {
+			temp = "" + file.charAt(i) + "" + file.charAt(i+1) + "" + file.charAt(i+2) + "" + file.charAt(i+3);
+			byte[] tb = convert4CharsTo24Bits(temp);
+			
+			for (int j = 0; j < 3; j++) {
+				int num = 0;
+				bytes[num] = tb[j];
+				num += 1;
+			}
 		
+		}
+		return bytes;
 	}
+	   
 }
