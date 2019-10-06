@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Base64Decoder {
+	static int num = 0;
 	
 	/*
 	 * Base 64 is a way of encoding binary data using text. Each number 0-63 is
@@ -95,8 +96,9 @@ public class Base64Decoder {
 			byte[] tb = convert4CharsTo24Bits(temp);
 			
 			for (int j = 0; j < 3; j++) {
-				int num = 0;
+				
 				bytes[num] = tb[j];
+				System.out.println(bytes[num]);
 				num += 1;
 			}
 		
